@@ -2,10 +2,10 @@
   "name": "crypto-api",
   "version": "1.0.0",
   "description": "Blockchain API project",
-  "main": "router.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon router.js"
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",
