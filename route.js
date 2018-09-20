@@ -1,6 +1,12 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 const app = express()
 const port = 3000
+
+// create application/json parser
+var jsonParser = bodyParser.json()
+// create application/x-www-form-urlencoded parser
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 //Library access variables
 //`m/44'/60'/0'/0`
@@ -29,10 +35,9 @@ app.get('/', (req, res) => {
     }
 )
 
-app.post('/test', function (req, res) {
-    var testVar = req.params('testVar');
-    res.send(testVar);
-    }   
-)
+app.post('/test', urlencodedParser, function (req, res) {
+    if (!req.body) return res.sendStatus(400)
+    res.send( req.body.testVar)
+  })
 
 app.listen(port, () => console.log(`Trial: listening on port ${port}!`))
