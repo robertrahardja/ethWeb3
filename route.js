@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
 )
 
 app.post('/test', function (req, res) {
-    var testVar = req.param('testVar');
+    var testVar = req.params('testVar');
     res.send(testVar);
     }   
 )
