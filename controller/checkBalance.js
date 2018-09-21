@@ -1,24 +1,20 @@
-var express = require('express');
-var router = express.Router();
-
+const express = require('express');
+const router = express.Router();
 const contractAddress = require('../libs/contractAddress');
-var Web3 = require('web3');
+const Web3 = require('web3');
 const ABI = require('../libs/ABI');
 const provider = require('../libs/provider');
 //var app = express();
-
-
 const bodyParser = require('body-parser')
 // create application/json parser
-var jsonParser = bodyParser.json()
+const jsonParser = bodyParser.json()
 // create application/x-www-form-urlencoded parser
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
-
-var web3 = new Web3(new Web3.providers.HttpProvider(provider));
+const urlencodedParser = bodyParser.urlencoded({ extended: false })
+const web3 = new Web3(new Web3.providers.HttpProvider(provider));
 const contract = web3.eth.contract(ABI);
 //const TransferTokens = require('./libs/TransferTokens');
 //const CheckBal = web3.eth.contract(TransferTokens);
-router.post('/checkBalances', urlencodedParser, function(req, res){
+router.post('/checkBalances', urlencodedParser , function(req, res){
     try
     {
          //var keystore = lightwallet.keystore.deserialize(req.body.keystore);
