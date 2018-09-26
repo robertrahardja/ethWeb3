@@ -7,5 +7,5 @@ app.use('/', require('./controller/libConnectionTest.js'));
 app.use('/test', require('./controller/postTest.js'))
 
 app.use('/ctest', require('./controller/ethNodeConnectionTest.js'));
-
+app.use('/balances', require('./controller/checkBalance.js'));
 app.listen(port, () => console.log(`Trial: listening on port ${port}!`))

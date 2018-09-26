@@ -12,8 +12,8 @@ const jsonParser = bodyParser.json()
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
 const web3 = new Web3(new Web3.providers.HttpProvider(provider));
 const contract = web3.eth.contract(ABI);
-//const TransferTokens = require('./libs/TransferTokens');
-//const CheckBal = web3.eth.contract(TransferTokens);
+const TransferTokens = require('./libs/TransferTokens');
+const CheckBal = web3.eth.contract(TransferTokens);
 router.post('/checkBalances', urlencodedParser , function(req, res){
     try
     {
@@ -60,5 +60,54 @@ router.post('/checkBalances', urlencodedParser , function(req, res){
               console.log("CheckBalances.js [checkBalances] is executed at UTC Time :" + time);
 	}
 });
+
+router.post('/balances/TokenBalances', urlencodedParser, function(req, res){
+  try
+  {
+       //var keystore = lightwallet.keystore.deserialize(req.body.keystore);
+        //The transaction signer provider
+        var address = req.body.address;
+        const TokenContractAddress = req.body.contractAddress;
+        const decimals = req.body.decimals;
+
+        if (address == null || TokenContractAddress == null){
+        	res.send("Invalid or incorrect input");
+	        }
+
+    function tokenBalancesPromise(user_addr, token_addr) {
+      return new Promise((resolve, reject) => {
+            const OtherToken = contract.at(token_addr);
+            const TransferERC = CheckBal.at(token_addr);
+            var TokenBalance = TransferERC.balanceOf.call(user_addr);
+        
+             TokenBalance = TokenBalance.c[0];
+
+            //console.log(TokenBalance);
+            var output =
+          {
+            TokenBalance : TokenBalance
+
+          }
+            return resolve(output);
+          });
+        }
+          var ResultPromise = new Promise((resolve, reject) => {
+            var balanceDetails = tokenBalancesPromise(address,TokenContractAddress,decimals)
+            resolve(balanceDetails);
+          })
+          ResultPromise.then(function(balanceDetails){
+            res.send(balanceDetails);
+          })
+    }
+  catch(err){
+            console.log(err.message);
+            res.send(err.message);
+          }
+  finally{
+         var time = new Date(Date.now()).toUTCString();
+            console.log("CheckBalances.js [TokenBalances] UTC Response Timestamp : " + time);
+  }
+});
+
 
 module.exports = router;
