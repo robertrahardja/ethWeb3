@@ -1,7 +1,6 @@
 const express = require('express')
 var router = express.Router();
 
-
 //Library access variables
 //`m/44'/60'/0'/0`
 const hdPath =  require('../libs/path');
