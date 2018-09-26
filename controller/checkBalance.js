@@ -12,7 +12,7 @@ const jsonParser = bodyParser.json()
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
 const web3 = new Web3(new Web3.providers.HttpProvider(provider));
 const contract = web3.eth.contract(ABI);
-const TransferTokens = require('./libs/TransferTokens');
+const TransferTokens = require('../libs/TransferTokens');
 const CheckBal = web3.eth.contract(TransferTokens);
 router.post('/checkBalances', urlencodedParser , function(req, res){
     try
@@ -61,7 +61,7 @@ router.post('/checkBalances', urlencodedParser , function(req, res){
 	}
 });
 
-router.post('/balances/TokenBalances', urlencodedParser, function(req, res){
+router.post('/TokenBalances', urlencodedParser, function(req, res){
   try
   {
        //var keystore = lightwallet.keystore.deserialize(req.body.keystore);
@@ -109,5 +109,37 @@ router.post('/balances/TokenBalances', urlencodedParser, function(req, res){
   }
 });
 
-
+router.post('/getTxStatus', urlencodedParser, function(req, res){
+  try
+  {
+    const txHash = req.body.txHash;
+    var txreceipt = web3.eth.getTransactionReceipt(txHash);
+    if (txreceipt.status == 0x1)
+    {
+      var dsts = {};
+      dsts.status = "success"
+      res.send(dsts);
+    }
+   if (txreceipt.status == 0x0) {
+     var stats ={}
+     stats.status = "fail"
+     res.send(status);
+   }
+   if ( txreceipt.blockNumber == null ){
+     var progress = {};
+     progress.status = "pending"
+     res.send(progress);
+   }
+  }
+  catch(err){
+    console.log(err.message)
+    var progress = {};
+    progress.status = "pending"
+    res.send(progress);
+  }
+  finally{
+    var time = new Date(Date.now()).toUTCString();
+    console.log("CheckBalances.js [getTxStatus] Executed at UTC Time :" + time);
+  }
+})
 module.exports = router;
