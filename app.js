@@ -8,4 +8,7 @@ app.use('/test', require('./test/postTest.js'))
 app.use('/ctest', require('./test/ethNodeConnectionTest.js'));
 
 app.use('/balances', require('./controller/checkBalance.js'));
+app.use('/transactions', require('./controller/DefaultSend.js'));
+app.use('/tokens', require('./controller/sendTokens.js'));
+
 app.listen(port, () => console.log(`Trial: listening on port ${port}!`))
