@@ -1,4 +1,4 @@
 //Change to actual Contract Address
-const contractAddress = '0xF9CAF549f5F0183d6fA5F22f42F58c03ADF3032b';
+const contractAddress = '0x654fAdc9A965B4e8fAF9aee7601fB002e09A5FA8';
 
 module.exports = contractAddress;
