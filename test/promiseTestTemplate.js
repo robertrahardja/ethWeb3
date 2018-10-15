@@ -16,5 +16,14 @@ describe('Testing all promises', function() {
               expect(result).to.be.an('object')
             })
          })
-        })
-    })
+
+         it('Should fail if inputed with wrong data', () => {
+          const deriveKeyPromise = require("../moduleTemplates/promiseModuleTemplate")
+          var testVar = "hello"
+          return deriveKeyPromise(testVar).catch( (err) => {
+            
+            expect(err).to.be.an.instanceof(Error)
+          })
+       })
+  })
+})
