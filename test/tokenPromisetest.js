@@ -11,7 +11,7 @@ describe('Token Promises', () => {
   describe('Odin Token Balance Promise Test', () => {
 
     it('Promise returned object with pattern {"TokenBalance": Number} ', () => {
-      const getUserTokenBalance = require("../controller/getUserTokenBalance")
+      const getUserTokenBalance = require("../modules/getUserTokenBalance")
       userAddress = '0xcd8e3e5b4a92cb8689da99026f11624d59b45a5c'
       tokenAddress = '0x654fAdc9A965B4e8fAF9aee7601fB002e09A5FA8'
 

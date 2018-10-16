@@ -11,7 +11,7 @@ describe('Ether Promises', () => {
   describe('Ether Balance Promise Test', () => {
 
     it('Promise returned object with pattern {"ethBalance": Number} ', () => {
-      const getUserEthBalance = require("../controller/getUserEthBalance")
+      const getUserEthBalance = require("../modules/getUserEthBalance")
       userAddress = '0xcd8e3e5b4a92cb8689da99026f11624d59b45a5c'
       
       return getUserEthBalance(userAddress).then((result) => {
