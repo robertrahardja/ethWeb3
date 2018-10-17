@@ -7,7 +7,7 @@ var chaiMatchPattern = require('chai-match-pattern');
 chai.use(chaiMatchPattern);
 var _ = chaiMatchPattern.getLodashModule(); 
 
-describe('Get Token Promise', () => {
+describe('Odin Token and Ether Balance Promise Module. tokenPromiseTest.js', () => {
   describe('getUserTokenBalance.js test. Input: userAddress, tokenAddress', () => {
 
     it('Promise returned object with pattern {"TokenBalance": Number} ', () => {
@@ -24,7 +24,7 @@ describe('Get Token Promise', () => {
       .catch((err)=>console.log("\tError: " + err.message))
     })
 
-    it('Promise returned object with error for invalid address ', () => {
+    it('Promise returned object with error for invalid address. Input: userAddress =\'hi\' ', () => {
       const getUserTokenBalance = require("../modules/getUserTokenBalance")
       userAddress = 'hi'
       tokenAddress = '0x654fAdc9A965B4e8fAF9aee7601fB002e09A5FA8'
@@ -38,7 +38,7 @@ describe('Get Token Promise', () => {
       .catch((err)=>console.log("\tError: " + err.message))
     })
 
-    it('Promise returned object with error for invalid tokenAddress ', () => {
+    it('Promise returned object with error for invalid tokenAddress. Input: tokenAddress =\'hi\'', () => {
       const getUserTokenBalance = require("../modules/getUserTokenBalance")
       userAddress = '0xcd8e3e5b4a92cb8689da99026f11624d59b45a5c'
       tokenAddress = 'hi'

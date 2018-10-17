@@ -7,7 +7,7 @@ var chaiMatchPattern = require('chai-match-pattern');
 chai.use(chaiMatchPattern);
 var _ = chaiMatchPattern.getLodashModule(); 
 
-describe('Get Ether Promise', () => {
+describe('Ether Balance Promise Module. ethPromiseTest.js', () => {
   describe('getUserEthBalance.js Test. Input: userAddress', () => {
 
     it('Promise returned object with pattern {"ethBalance": Number} ', () => {
@@ -23,7 +23,7 @@ describe('Get Ether Promise', () => {
       .catch((err)=>console.log("\tError: " + err.message))
     })
 
-    it('Promise returned object with invalid address error ', () => {
+    it('Promise returned object with invalid address error. Input: userAddress =\'hi\' ', () => {
       const getUserEthBalance = require("../modules/getUserEthBalance")
       userAddress = 'hi'
       
