@@ -31,7 +31,6 @@ router.post('/transactions/sendTokens', urlencodedParser, function(req, res){
       function sendTokenPromise(tokenContractAddress, sendToAddress, sendAmount) { 
         return new Promise((resolve, reject) => {
           
-          
 
           var rawTransaction = {
             "from": fromAddress,

@@ -12,4 +12,6 @@ app.use('/transactions', require('./controller/DefaultSend.js'));
 app.use('/tokens', require('./controller/sendTokens.js'));
 app.use('/history', require('./controller/transaction-history.js'));
 
+app.use('/getUsrOdinEthBal', require('./modulesAPI/getUserOdinEthApi.js'));
+
 module.exports = app.listen(port, () => console.log(`Listening on port ${port}!\n`))
