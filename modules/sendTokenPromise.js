@@ -35,10 +35,10 @@ module.exports = function sendTokenPromise(tokenContractAddress, sendToAddress, 
     // console.log(fromAddress)
     // console.log('pkBuffer is : ')
     // console.log(pkBuffer)
-    // process.on('unhandledRejection', error => {
-    //     // Will print "unhandledRejection err is not defined"
-    //     console.log('unhandledRejection', error.message);
-    //   });
+    process.on('unhandledRejection', error => {
+        // Will print "unhandledRejection err is not defined"
+        console.log('unhandledRejection', error.message);
+      });
     console.log('type of privateKey is : ')
     console.log(typeof(privateKey))
     var pkBuffer = new Buffer.from(privateKey.substring(2,66), 'hex')
