@@ -37,12 +37,14 @@ module.exports = function sendTokenPromise(tokenContractAddress, sendToAddress, 
     // console.log(pkBuffer)
     process.on('unhandledRejection', error => {
         // Will print "unhandledRejection err is not defined"
-        console.log('unhandledRejection', error.message);
+        console.log('unhandledRejection: ', error.message);
       });
     console.log('type of privateKey is : ')
     console.log(typeof(privateKey))
-    var pkBuffer = new Buffer.from(privateKey.substring(2,66), 'hex')
+    var pkBuffer = new Buffer.from(privateKey, 'hex')
     var nonce = web3.eth.getTransactionCount(fromAddress)
+    // var nonce = web3.eth.getTransactionCount(fromAddress) + 1048576
+
     // console.log('type of nonce is : ')
     // console.log(typeof(nonce))
     return new Promise((resolve, reject) => {
@@ -77,7 +79,12 @@ module.exports = function sendTokenPromise(tokenContractAddress, sendToAddress, 
         // console.log(rawTransaction)
         // console.log(serializedTx.toString('hex'))
         
-        web3.eth.sendRawTransaction('0x' + serializedTx.toString('hex'), function (err, hash){ resolve (hash)}
+        web3.eth.sendRawTransaction('0x' + serializedTx.toString('hex'), function (err, hash){ 
+           
+            if (err){
+        
+            resolve (hash)
+        }
         // function(err, hash){
         //     if (err){
         //         console.log("there's an error :")
